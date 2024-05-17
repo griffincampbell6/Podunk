@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { FirebaseService } from '../../core/services/firebase/firebase-service.module';
+
 @Component({
   selector: 'app-account-form',
   standalone: true,
@@ -8,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './account-form.component.css'
 })
 export class AccountFormComponent {
+
+  constructor(private firebaseService: FirebaseService) {}
 
 }
