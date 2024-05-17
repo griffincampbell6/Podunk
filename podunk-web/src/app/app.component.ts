@@ -2,39 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-import { getAuth } from 'firebase/auth';
-
-import { firebaseConfig } from './core/firebase.config';
+import { FirebaseService } from './core/services/firebase/firebase-service.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule],
+  providers: [FirebaseService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 
 export class AppComponent implements OnInit {
-  title = 'podunk-web';
-  app: any;
-  analytics: any;
-
+  constructor(private firebaseService: FirebaseService) {}
   // Initialize Firebase
   ngOnInit(): void {
-    try {
-      this.app = initializeApp(firebaseConfig);
-      this.analytics = getAnalytics(this.app);
-    } catch (e) {
-      console.error("Error initializing Firebase: ", e);
-    }
-
-    console.log(this.app); // Debugging
-
-    // Initialize Firebase Auth
-    const auth = getAuth(this.app);
-
+    const auth = this.firebaseService.getAuth();
     console.log(auth); // Debugging
   }
 }
