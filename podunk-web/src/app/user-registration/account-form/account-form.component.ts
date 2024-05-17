@@ -6,6 +6,7 @@ import { FirebaseService } from '../../core/services/firebase/firebase-service.m
   selector: 'app-account-form',
   standalone: true,
   imports: [],
+  providers: [FirebaseService],
   templateUrl: './account-form.component.html',
   styleUrl: './account-form.component.css'
 })
