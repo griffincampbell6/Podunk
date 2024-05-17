@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+
+import { firebaseConfig } from './firebase.config';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +14,21 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
   title = 'podunk-web';
+  app: any;
+  analytics: any;
+
+  // Initialize Firebase
+  ngOnInit(): void {
+    try {
+      this.app = initializeApp(firebaseConfig);
+      this.analytics = getAnalytics(this.app);
+    } catch (e) {
+      console.error("Error initializing Firebase: ", e);
+    }
+
+    console.log(this.app); // Debugging
+  }
 }
