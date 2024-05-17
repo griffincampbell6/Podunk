@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import { getAuth } from 'firebase/auth';
 
 import { firebaseConfig } from './firebase.config';
 
@@ -30,5 +31,10 @@ export class AppComponent implements OnInit {
     }
 
     console.log(this.app); // Debugging
+
+    // Initialize Firebase Auth
+    const auth = getAuth(this.app);
+
+    console.log(auth); // Debugging
   }
 }
