@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
 
-import { firebaseConfig } from './firebase.config';
+import { firebaseConfig } from './core/firebase.config';
 
 @Component({
   selector: 'app-root',
